@@ -54,6 +54,20 @@ Die Plattform soll Mechanismen zur Filterung von unangemessenem oder beleidigend
 * Inhalte, die als unangemessen oder beleidigend markiert werden, sollen automatisch zur Überprüfung markiert oder entfernt werden.
 * Nutzer sollen die Möglichkeit haben, Inhalte zur Überprüfung zu melden.
 
+#### User Story 7: Zitate schreiben (Prio 'Should')
+Als angemeldeter Nutzer kann ich Zitate von Dozierenden oder aus Vorlesungen erfassen.
+
+**Akzeptanzkriterien**
+* Ein Zitat muss den Text des Zitats und die Quelle (Dozierender oder Vorlesung) enthalten.
+* Nach der Veröffentlichung wird das Zitat unter der Kategorie "Zitate" angezeigt.
+
+#### User Story 8: Allgemeine Artikel schreiben (Prio 'Should')
+Als angemeldeter Nutzer kann ich allgemeine Artikel zu studienrelevanten Themen verfassen.
+
+**Akzeptanzkriterien**
+* Ein Artikel muss einen Titel und den Artikeltext enthalten.
+* Nach der Veröffentlichung wird der Artikel unter der Kategorie "Artikel" angezeigt.
+
 #### Nicht-Funktionale Anforderungen
 Die Plattform soll sowohl auf Desktop- als auch auf mobilen Endgeräten optimal nutzbar sein und eine schnelle Ladezeit von unter einer Sekunde aufweisen. Änderungen an Einträgen sollen historisiert werden, um Transparenz und Nachvollziehbarkeit zu gewährleisten. Zudem sollen sämtliche Anmeldungen an die Plattform protokolliert werden, um die Sicherheit zu erhöhen und Missbrauch vorzubeugen.
 
@@ -61,21 +75,19 @@ Die Plattform soll sowohl auf Desktop- als auch auf mobilen Endgeräten optimal 
 Das Projekt "Awesome HSLU" setzt auf folgenden Technologie Stack:
 
 ### Frontend
-- **Angular**: Einsatz für die Erstellung der Benutzeroberfläche. Angular Server-Side Rendering (SSR) mit Angular Universal wird für Performance und SEO-Optimierung in Betracht gezogen.
+- **Angular**: Angular Server-Side Rendering (SSR) mit Angular Universal wird für Performance und SEO-Optimierung in Betracht gezogen.
 
 ### Backend
 - **Node.js und Express**: Verwendung von Node.js als Laufzeitumgebung und Express als Webanwendungsframework für die Entwicklung der Backend-API.
 
 ### Datenbank
-- **MongoDB mit Mongoose**: MongoDB dient als NoSQL-Datenbanklösung. Mongoose wird als ODM (Object Data Modeling) Framework eingesetzt, um die Interaktion mit der Datenbank zu erleichtern.
+- **MongoDB mit Mongoose**: Mongoose wird als ODM (Object Data Modeling) Framework eingesetzt.
 
 ### Entwicklungssprache
 - **TypeScript**: Durchgängige Verwendung von TypeScript im gesamten Projekt für Frontend und Backend zur Verbesserung der Codequalität und -wartung.
 
 ### Potenzielle Erweiterungen
 - **Angular SSR/Universal**: Wird möglicherweise für verbesserte Ladezeiten und SEO implementiert.
-
-Diese Technologien bilden die Grundlage für die Entwicklung und den Betrieb der Plattform.
 
 ## Architektur
 Die Architektur des Projekts "Awesome HSLU" basiert auf einem monolithischen Ansatz, bei dem Frontend, Backend und Datenbankkomponenten in einer einzigen, zusammenhängenden Anwendung integriert sind.
