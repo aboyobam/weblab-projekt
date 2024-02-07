@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">AwesomeHSLU</a>
+    <button class="navbar-toggler" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="modules">Modulbeschreibungen</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="articles">Artikel</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="quotes">Quotes</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        @if (auth.username) {
+          <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" role="button" ngbDropdownToggle>
+              {{ auth.username }}
+            </a>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <a class="dropdown-item" href="#">Password ändern</a>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </li>
+        } @else {
+          <li class="nav-item" routerLinkActive="active" *ngIf="!auth.username">
+            <a class="nav-link" routerLink="login">Login</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <div class="container">
+    Some Footer value | Year | All rights reserved
+  </div>
+</footer>

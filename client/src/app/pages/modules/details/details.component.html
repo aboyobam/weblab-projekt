@@ -1,0 +1,41 @@
+<div class="d-flex align-items-center" *ngIf="module">
+    <div class="flex-1">
+        <h3>{{ module.abbreviation }}</h3>
+        <span class="font-italic">{{ (module.rating[0] * 100).toFixed() }}% Positiv ({{ module.rating[1] + module.rating[2] }} Bewertung/en). Von <b>{{ module.author }}</b> am {{ module.updated | date: "dd.MM.YYYY HH:mm" }}</span>
+    </div>
+    <div>
+        <rate-module [module]="module"></rate-module>
+    </div>
+</div>
+<hr>
+
+<markdown [data]="module.description" *ngIf="module"></markdown>
+
+<hr>
+<h4>Kommentare</h4>
+
+@if (auth.username) {
+    <textarea class="form-control" [(ngModel)]="commentText" placeholder="Schreibe einen Kommentar..."></textarea>
+    <div class="form-check mt-3">
+        <input class="form-check-input" type="checkbox" value="" id="anon" [(ngModel)]="anonymous">
+        <label class="form-check-label" for="anon">Anonym bleiben</label>
+    </div>
+
+    <button class="btn btn-primary mt-2" (click)="addComment()">Kommentar hinzufügen</button>
+    <hr>
+} @else {
+    <div class="alert alert-warning">Du musst angemeldet sein, um einen Kommentar zu schreiben</div>
+}
+
+@if (module && module.comments.length) {
+    <div class="card mb-2" *ngFor="let comment of module.comments">
+        <div class="card-header">
+            <b>{{ comment.author }}</b> am {{ comment.updated | date: "dd.MM.YYYY HH:mm" }}
+        </div>
+        <div class="card-body">
+            <p class="prewrap font-italic mb-0">{{ comment.text }}</p>
+        </div>
+    </div>
+} @else {
+    <div class="alert alert-info">Es gibt noch keine Kommentare zu diesem Modul</div>
+}

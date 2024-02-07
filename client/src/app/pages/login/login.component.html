@@ -1,0 +1,33 @@
+<h3>Login</h3>
+<hr>
+<div class="row justify-content-center">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username" class="form-label">Benutzername</label>
+                    <input type="text" id="username" class="form-control" placeholder="Benutzername" [(ngModel)]="username">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="password" class="form-label">Passwort</label>
+                    <input type="password" id="password" class="form-control" placeholder="Passwort" [(ngModel)]="password">
+                </div>
+
+                <div class="text-center text-danger" *ngIf="error">
+                    {{ error }}
+                </div>
+
+                <button class="btn btn-success d-block w-100 mt-3" [disabled]="!username || !password" (click)="login()">Anmelden</button>
+
+                <hr>
+
+                <div class="text-center">
+                    <a routerLink="/forgot-password">Passwort vergessen?</a>
+                </div>
+
+                <a class="btn btn-info d-block w-100 mt-3" routerLink="/register">Registieren</a>
+            </div>
+
+        </div>
+    </div>
+</div>

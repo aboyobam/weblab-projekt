@@ -1,0 +1,56 @@
+<h3>Modulbeschreibungen</h3>
+<hr>
+
+<div class="d-flex align-items-center">
+    <p class="flex-1 mb-0">Schreibe deine eigene Modulbeschreibung</p>
+    <div>
+        @if (auth.username) {
+            <a class="btn btn-success" routerLink="new">Modulbeschreibungen hinzufügen</a>
+        } @else {
+            <div class="button btn btn-sm btn-outline-secondary">Melde Dich an um eine Modulbeschreibungen zu erstellen</div>
+        }
+    </div>
+</div>
+
+<div class="mt-3" *ngFor="let module of modules">
+    <hr>
+    <a [routerLink]="module.slug" class="h2 mb-2">{{ module.module }}</a>
+    <div class="mb-1">
+        <span class="font-italic">{{ (module.rating[0] * 100).toFixed() }}% Positiv ({{ module.rating[1] + module.rating[2] }} Bewertung/en). Von <b>{{ module.author }}</b> am {{ module.updated | date: "dd.MM.YYYY HH:mm" }}</span>
+    </div>
+    <markdown [data]="module.description"></markdown>
+    <div class="d-flex justify-content-between">
+        <div>
+            <rate-module [module]="module"></rate-module>
+       </div>
+        <div>
+            <a class="btn btn-sm btn-outline-primary" [routerLink]="module.slug">{{ module.comments }}</a>
+        </div>
+    </div>
+
+    @if (module.others.length) {
+        <button class="btn btn-sm" (click)="collapse.toggle()">+ {{ module.others.length }} weitere Beschreibungen für dieses Modul</button>
+        <div #collapse="ngbCollapse" [ngbCollapse]="true">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Bewertung</th>
+                        <th>Autor</th>
+                        <th>Kommentare</th>
+                        <th>Letzte Änderung</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let other of module.others">
+                        <td>{{ (other.rating[0] * 100).toFixed() }}%</td>
+                        <td>{{ other.author }}</td>
+                        <td>{{ other.comments }}</td>
+                        <td>{{ other.updated | date: "dd.MM.YYYY HH:mm" }}</td>
+                        <td><a routerLink="other.slug">öffnen</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
