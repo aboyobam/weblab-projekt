@@ -8,7 +8,7 @@ const bodySchema = z.object({
     anonymous: z.boolean(),
 });
 
-export default async function newModule(req: Request, res: Response) {
+export default async function newArticle(req: Request, res: Response) {
     if (!req.session.userId) {
         return res.json({ success: false, error: "Du musst eingeloggt sein, um eine Beschreibung zu erfassen" });
     }
@@ -18,8 +18,7 @@ export default async function newModule(req: Request, res: Response) {
         return res.json({ success: false, error: "Ungültige Anfrage" });
     }
 
-    const hasCount = await Module.countDocuments({ abbreviation: body.data.module, type: "module" });
-    const slug = `${body.data.module}-${hasCount + 1}`;
+    const slug = body.data.module.slice(0, 10).replace(/[^a-z0-9]/gi, "-") + "-" + makeid(5);
 
     await Module.create({
         abbreviation: body.data.module,
@@ -29,8 +28,20 @@ export default async function newModule(req: Request, res: Response) {
         author: req.session.userId,
         comments: [],
         ratings: [],
-        type: "module"
+        type: "article",
     });
 
     return res.json({ success: true, slug });
+}
+
+function makeid(length: number) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
 }

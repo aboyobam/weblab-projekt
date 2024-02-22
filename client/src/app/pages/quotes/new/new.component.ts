@@ -4,7 +4,7 @@ import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-new',
+  selector: 'app-new-quote',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './new.component.html',
@@ -20,7 +20,7 @@ export class NewComponent {
 
   async publish() {
     this.error = "";
-    const { success, error, slug } = await this.api.post('modules/new', {
+    const { success, error, slug } = await this.api.post('quotes/new', {
       module: this.module,
       desc: this.desc,
       anonymous: this.anonymous
@@ -32,7 +32,7 @@ export class NewComponent {
     }
 
     if (success) {
-      this.router.navigate([`/module/${slug}`]);
+      this.router.navigate([`/quote/${slug}`]);
     }
   }
 }

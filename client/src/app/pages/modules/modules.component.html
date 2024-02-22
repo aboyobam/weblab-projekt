@@ -14,7 +14,7 @@
 
 <div class="mt-3" *ngFor="let module of modules">
     <hr>
-    <a [routerLink]="module.slug" class="h2 mb-2">{{ module.module }}</a>
+    <a routerLink="/module/{{ module.slug }}" class="h2 mb-2">{{ module.module }}</a>
     <div class="mb-1">
         <span class="font-italic">{{ (module.rating[0] * 100).toFixed() }}% Positiv ({{ module.rating[1] + module.rating[2] }} Bewertung/en). Von <b>{{ module.author }}</b> am {{ module.updated | date: "dd.MM.YYYY HH:mm" }}</span>
     </div>
@@ -24,7 +24,7 @@
             <rate-module [module]="module"></rate-module>
        </div>
         <div>
-            <a class="btn btn-sm btn-outline-primary" [routerLink]="module.slug">{{ module.comments }}</a>
+            <a class="btn btn-sm btn-outline-primary" routerLink="/module/{{ module.slug }}"><i class="fa fa-comment" aria-hidden="true"></i> {{ module.comments }}</a>
         </div>
     </div>
 

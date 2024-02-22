@@ -9,6 +9,7 @@ interface IModule {
     description: string;
     anonymous: boolean;
     slug: string;
+    type: "module" | "article" | "quote";
     
     author: MUser;
     ratings: MRating[];
@@ -33,6 +34,7 @@ const SModule = new mng.Schema<IModule, IModuleStatic, IModuleVirtuals>({
     description: String,
     anonymous: Boolean,
     slug: String,
+    type: String,
 
     author: { type: mng.Schema.Types.ObjectId, ref: 'user' },
     ratings: [{ type: mng.Schema.Types.ObjectId, ref: 'rating' }],

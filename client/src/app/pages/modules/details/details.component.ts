@@ -43,12 +43,13 @@ export class DetailsComponent implements OnInit {
 
   async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
+    const type = this.route.snapshot.paramMap.get('type');
     if (!slug) {
       this.router.navigate(['/modules']);
       return;
     }
 
-    const { success, error, module } = await this.api.get("modules/" + slug);
+    const { success, error, module } = await this.api.get(`modules/${type}/${slug}`);
     if (error) {
       alert(error);
       this.router.navigate(['/modules']);

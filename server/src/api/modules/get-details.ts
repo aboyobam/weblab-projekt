@@ -7,7 +7,7 @@ export default async function getModuleDetails(req: Request, res: Response) {
         return res.json({ success: false, error: "No slug provided" });
     }
 
-    const module = await Module.findOne({ slug })
+    const module = await Module.findOne({ slug, type: req.params.type })
         .populate("author", "username")
         .populate({ path: "comments", populate: { path: "author", select: "username" }})
         .populate("ratings");

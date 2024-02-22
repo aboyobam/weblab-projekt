@@ -6,7 +6,7 @@ import { ApiService } from './api.service';
 })
 export class AuthService {
 
-  constructor(api: ApiService) {
+  constructor(public api: ApiService) {
     api.get("user").then(({ success, username }) => {
       if (success) {
         this.username = username;
@@ -14,5 +14,12 @@ export class AuthService {
     });
   }
 
-  username: string;
+  username?: string;
+
+  async logout() {
+    const res = await this.api.post("logout", {});
+    if (res.success) {
+      this.username = undefined;
+    }
+  }
 }

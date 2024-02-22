@@ -7,20 +7,35 @@ import getModules from "./modules/get-modules.js";
 import rateModule from "./modules/rate.js";
 import getModuleDetails from "./modules/get-details.js";
 import postComment from "./modules/post-comment.js";
+import logout from "./auth/logout.js";
+import newArticle from "./articles/new-article.js";
+import getArticles from "./articles/get-articles.js";
+import newQuote from "./quotes/new-quote.js";
+import getQuotes from "./quotes/get-quotes.js";
 
 const api = Router();
-
 
 // auth
 api.get("/user", getUser);
 api.post("/login", login);
 api.post("/register", register);
+api.post("/logout", logout);
 
-// modules
-api.get("/modules", getModules);
-api.post("/modules/new", newModule);
+// general
+api.get("/modules/:type/:slug", getModuleDetails);
 api.post("/modules/rate", rateModule);
 api.post("/modules/comment", postComment);
-api.get("/modules/:slug", getModuleDetails);
+
+// modules
+api.post("/modules/new", newModule);
+api.get("/modules", getModules);
+
+// articles
+api.post("/articles/new", newArticle);
+api.get("/articles", getArticles);
+
+// quotes
+api.post("/quotes/new", newQuote);
+api.get("/quotes", getQuotes);
 
 export default api;

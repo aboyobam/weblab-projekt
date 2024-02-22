@@ -13,7 +13,7 @@
           <a class="nav-link" routerLink="articles">Artikel</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="quotes">Quotes</a>
+          <a class="nav-link" routerLink="quotes">Zitate</a>
         </li>
       </ul>
       <ul class="navbar-nav">
@@ -23,8 +23,8 @@
               {{ auth.username }}
             </a>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <a class="dropdown-item" href="#">Password ändern</a>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item">Password ändern</a>
+              <a class="dropdown-item" (click)="auth.logout()">Logout</a>
             </div>
           </li>
         } @else {

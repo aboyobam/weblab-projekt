@@ -10,7 +10,7 @@ const bodySchema = z.object({
 
 const authFailError = "Ungültiger Benutzername oder Passwort";
 
-export default async function login(req: Request, res: Response){
+export default async function login(req: Request, res: Response) {
     const body = bodySchema.safeParse(req.body);
     if (!body.success) {
         return res.json({ success: false, error: "Etwas ist schief gelaufen" });
@@ -19,7 +19,7 @@ export default async function login(req: Request, res: Response){
     const user = await User.findOne({ username: body.data.username });
 
     if (!user) {
-        return res.json({ success: false, error: authFailError })
+        return res.json({ success: false, error: authFailError });
     }
 
     const hash = crypto.scryptSync(body.data.password, user.salt, 64).toString('hex');

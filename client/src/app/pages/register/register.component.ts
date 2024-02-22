@@ -3,7 +3,14 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+
+interface Model {
+  username: string;
+  password: string;
+  email: string;
+  passwordC: string;
+}
 
 @Component({
   selector: 'app-register',
@@ -13,18 +20,18 @@ import { RouterLink } from '@angular/router';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  constructor(private api: ApiService, private auth: AuthService) {}
+  constructor(private api: ApiService, private auth: AuthService, private router: Router) {}
 
-  username: string;
-  password: string;
-  email: string;
-  passwordConfirm: string;
   error: string;
 
-  async register() {
+  async register(model: Model) {
     this.error = "";
 
-    const { success, error } = await this.api.post("register", { username: this.username, password: this.password, email: this.email });
+    const { success, error } = await this.api.post("register", {
+      username: model.username,
+      password: model.password,
+      email: model.email
+    });
   
     if (error) {
       this.error = error;
@@ -32,11 +39,8 @@ export class RegisterComponent {
     }
 
     if (success) {
-      this.auth.username = this.username;
+      this.auth.username = model.username;
+      this.router.navigate(["/"])
     }
-  }
-
-  get canRegister() {
-    return this.username && this.password && this.email && this.password === this.passwordConfirm;
   }
 }
