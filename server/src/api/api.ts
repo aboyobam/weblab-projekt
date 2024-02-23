@@ -12,6 +12,7 @@ import newArticle from "./articles/new-article.js";
 import getArticles from "./articles/get-articles.js";
 import newQuote from "./quotes/new-quote.js";
 import getQuotes from "./quotes/get-quotes.js";
+import apiHome from "./home.js";
 
 const api = Router();
 
@@ -37,5 +38,8 @@ api.get("/articles", getArticles);
 // quotes
 api.post("/quotes/new", newQuote);
 api.get("/quotes", getQuotes);
+
+// home
+api.get("/trending", apiHome);
 
 export default api;
