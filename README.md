@@ -1,0 +1,6 @@
+- [Dokumentation](./docs/Dokumentation.md)
+- [How to run](./docs/Anleitung.md)
+- [Arbeitsjournal](./docs/Arbeitsjournal.md)
+- [Projektbeschrieb](./docs/Projektbeschrieb.md)
+- [Fazit & Reflexion](./docs/Fazit.md)
+- [Online Version / Deployment](https://awesome-hslu.aboyobam.me/)
