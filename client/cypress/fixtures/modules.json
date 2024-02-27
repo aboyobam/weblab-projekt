@@ -1,0 +1,23 @@
+{
+    "success": true,
+    "modules": [
+        {
+            "module": "TEST",
+            "slug": "TEST-1",
+            "description": "Testing is fun!",
+            "updated": "2024-02-27T11:54:38.884Z",
+            "author": "test",
+            "rating": [0.5, 0, 0],
+            "rated": null,
+            "comments": 0,
+            "_id": "__id",
+            "others": [{
+                "slug": "TEST-2",
+                "updated": "2024-02-27T11:54:38.884Z",
+                "author": "Anonymous",
+                "rating": [0, 0, 1],
+                "comments": 0
+            }]
+        }
+    ]
+}

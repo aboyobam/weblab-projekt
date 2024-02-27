@@ -27,11 +27,11 @@ describe('Login', () => {
         });
       }).as('login');
 
-
-      // get button with text "Login"
       cy.get('button').contains("Anmelden").click();
 
       cy.wait('@login');
-      cy.url().should('eq', 'http://localhost:3000');
+
+      // check redirect
+      cy.url().should('eq', 'http://localhost:4200/');
     });
 });

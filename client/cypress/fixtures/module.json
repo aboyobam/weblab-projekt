@@ -1,0 +1,14 @@
+{
+    "success": true,
+    "module": {
+      "abbreviation": "TEST",
+      "description": "Testing is fun!",
+      "author": "Test",
+      "slug": "TEST-1",
+      "rating": [0.5, 0, 0],
+      "_id": "__id",
+      "updated": "2024-02-27T11:54:38.884Z",
+      "rated": null,
+      "comments": []
+    }
+}

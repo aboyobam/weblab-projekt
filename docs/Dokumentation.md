@@ -40,7 +40,7 @@ Beim Client wurde das Typing aus Zeitgründen etwas vernachlässigt.
 
 **Docker**: Für das Deployment auf meinem Server habe ich die Applikation als Docker Container verpackt und sie auf meine Docker-Registry gepusht. Auf dem Server wurde eine Docker-Compose konfiguration erstellt, welche den Server und eine MongoDB startet.
 
-_TODO_: Add image
+![Architektur](./Architektur.png)
 
 ## Bausteinsicht
 **Client**: Frontend mit Angular \
@@ -83,7 +83,7 @@ Der Server hat 14 Endpunkte:
 | GET /trending | Gibt Modulbeschreibungen, Artikel und Zitate zurück, welche positiv bewertet wurden |
 
 ## Laufzeitsicht
-_TODO_: Create diagram
+![Laufzeitansicht](./Laufzeitansicht.png)
 
 ## Verteilungssicht
 Der Server und Client werden zusammen auf einem Server gehostet. Es könnte jedoch ohne Probleme umgestellt werden.
@@ -103,12 +103,17 @@ Der Grund für diese etwas spezielle Speicherung mittels ObjectIDs ist weil Mong
 
 Es gibt aktuell keine Möglichkeit, die Daten über das UI zu löschen.
 
-### Authentifizierung
+### Authentication
 Es wird das Node Module `express-session` verwendet. Dieses setzt bei allen Nutzern (auch nicht eingeloggt) ein Session Cookie. Wenn sich ein Nutzer einloggt wird die ObjectID des Nutzers in die Session geschrieben (nur Serverseitig). Die SessionID von express-session dient als einmaliger Identifier um sicherzustellen, dass eine Person (auch ohne Login) jeden Inhalt maximal 1 Mal bewerten kann (Kann mittels Cookie löschen umgangen werden).
 
 ## Entwurfsentscheidungen
 ### Server-Side-Rendering
 Es wurde kein SSR umgesetzt, obwohl dies nachträglich vermutlich sinnvoll wäre. Der Seiteninhalt ändert sich nicht mehr nach dem initialen Laden.
+
+### Testing
+Da der Client an sich keine wirkliche Logik beinhaltet, sondern nur die JSON Daten von der API visuell darstellt, wurde für den Client keine Unit-Tests erstellt. Dafür wurde jede Seite mit ausführlichen End-to-End Tests getestet.
+
+Auf dem Server wurden alle wichtigen Endpunkte mit unit Tests getestet. Integrationstest wurden manuell gemacht, da die Zeit nicht reichte, um diese zu automatisieren. 
 
 ## Qualitätsanforderungen
 ### Error Handling
@@ -119,3 +124,26 @@ Die Passwörter werden auf der Datenbank nur gehasht abgespeichert. Dazu wird no
 
 ### Mobile Kompatibilität
 Die Webseite wurde für Desktop erstellt. Es wurde aber darauf geschaut, dass insbesondere mit Bootstrap auch eine gewisse Mobile Tauglichkeit entsteht.
+
+## Tests
+```
+    Spec                                              Tests  Passing  Failing  Pending  Skipped
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ √  articles.cy.ts                           00:01        3        3        -        -        - │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ √  create-comment.cy.ts                     914ms        1        1        -        -        - │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ √  home.cy.ts                               448ms        2        2        -        -        - │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ √  login.cy.ts                              00:01        3        3        -        -        - │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ √  logout.cy.ts                             565ms        1        1        -        -        - │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ √  modules.cy.ts                            901ms        4        4        -        -        - │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ √  new-module.cy.ts                         00:01        2        2        -        -        - │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ √  quotes.cy.ts                             940ms        3        3        -        -        - │
+└────────────────────────────────────────────────────────────────────────────────────────────────┘
+  √  All specs passed!                        00:07       19       19        -        -        -
+```

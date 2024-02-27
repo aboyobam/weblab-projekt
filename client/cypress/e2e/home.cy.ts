@@ -1,4 +1,10 @@
+import loggedIn from "../support/loggedIn";
+
 describe('Should visit the home page', () => {
+  beforeEach(() => {
+    loggedIn(cy);
+  });
+  
   it('Should see the title trending', () => {
     cy.visit('/');
     cy.intercept('GET', '/api/trending').as('trending');
