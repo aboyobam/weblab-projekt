@@ -15,11 +15,11 @@ declare module 'express-session' {
     }
 }
 
-await mongoose.connect(process.env.MONGO, { dbName: process.env.DB_NAME });
+export const app = express();
 
-const app = express();
+await mongoose.connect(global.__MONGO_URI__ || process.env.MONGO, { dbName: process.env.DB_NAME });
+
 const server = http.createServer(app);
-
 app.use(cors());
 app.use(session({
     secret: process.env.COOKIE_SECRET,
@@ -29,12 +29,7 @@ app.use(session({
         maxAge: 100 * 365 * 24 * 60 * 60 * 1000,
         httpOnly: true,
     },
-    store: MongoStore.create({
-        autoRemove: "disabled",
-        collectionName: "sessions",
-        dbName: process.env.DB_NAME,
-        mongoUrl: process.env.MONGO
-    })
+    store: MongoStore.create({ client: mongoose.connection.getClient() }),
 }));
 
 app.use(bodyParser.json());
@@ -43,4 +38,6 @@ app.use("/api", api);
 app.use(express.static("public/browser"));
 app.use((_req, res) => res.sendFile("index.html", { root: "public/browser" }));
 
-server.listen(3000, () => console.log("Listening"));
+if (!process.env.JEST_WORKER_ID) {
+    server.listen(3000, () => console.log("Listening"));
+}
