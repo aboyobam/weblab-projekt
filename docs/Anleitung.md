@@ -20,7 +20,7 @@ docker compose up
 Danach sollte die Webseite auf `localhost:3000` verfügbar sein.
 
 # Tests
-Sowohl auf dem Client als auf dem Server können mit `npm run test` alle Tests ausgeführt werden. 
+Sowohl auf dem Client als auf dem Server können mit `npm test` alle Tests ausgeführt werden. 
 
 Auf dem Client muss zuerst `new serve [--mode production]` laufen.
 

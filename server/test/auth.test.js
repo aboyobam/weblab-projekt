@@ -2,11 +2,12 @@ import request from "supertest";
 import mongoose from "mongoose";
 import { app } from "../dist";
 import User from "../dist/models/User";
+import resetDb from "./reset-db";
 
 const express = request(app);
 
 describe("Should test the Auth API", () => {
-    it("Should create a User", async () => {
+    it("Should register a User via API", async () => {
         const res = await express
             .post("/api/register")
             .send({
@@ -25,7 +26,7 @@ describe("Should test the Auth API", () => {
         expect(user).toBeTruthy();
     });
 
-    it("Should login the user", async () => {
+    it("Should be able to login with user via API", async () => {
         const res = await express
             .post("/api/login")
             .send({
@@ -36,8 +37,13 @@ describe("Should test the Auth API", () => {
         expect(res.body.success).toEqual(true);
     });
 
+    it("Should clean the database", async () => {
+        await resetDb();
+    });
+
     // make sure it shuts down the server
-    afterAll(() => {
+    afterAll(async () => {
+        await resetDb();
         mongoose.connection.close();
     });
 });

@@ -6,6 +6,8 @@
 | Projektbereibung erstellen | 06.02 | 3h |
 | NodeJS + Angular aufsetzen (inkl Projektstruktur) |  07.02 | 1h |
 | MongoDB aufsetzen (mit Docker) | 08.02 | 1h |
+| Dokumentation | 25.02 | 3h |
+| Reflexion | 27.02 | 2h |
 
 ## Client
 | Arbeit   |     Datum     |  Zeit |
@@ -30,9 +32,8 @@
 ## Tests
 | Arbeit   |     Datum     |  Zeit |
 |----------|:-------------:|------:|
-| Spec Tests (Unit) für Client | 23.02 | 6h |
-| e2e Test für Client | 26.02 | 7h |
-| Unit Tests für den Server | 27.02 | 6h |
+| e2e Test für Client | 26.02 | 8h |
+| Unit Tests für den Server | 27.02 | 7h |
 
 ## Deployment
 | Arbeit   |     Datum     |  Zeit |
@@ -42,5 +43,5 @@
 | Deploy + SSL Zertifikate (mit Certbot) | 28.02 | 4h |
 | Live-Seite mit Daten von struggling-at-hslu befüllt | 28.02 | 2h |
 
-# Total 61h
+# Total 62h
 Beinhaltet aber auch Zeit, welche während dem Unterricht gearbeitet wurde wie das Setup und erstellen der Projektbeschreibung 

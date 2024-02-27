@@ -126,6 +126,7 @@ Die Passwörter werden auf der Datenbank nur gehasht abgespeichert. Dazu wird no
 Die Webseite wurde für Desktop erstellt. Es wurde aber darauf geschaut, dass insbesondere mit Bootstrap auch eine gewisse Mobile Tauglichkeit entsteht.
 
 ## Tests
+### Client
 ```
     Spec                                              Tests  Passing  Failing  Pending  Skipped
 ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -146,4 +147,20 @@ Die Webseite wurde für Desktop erstellt. Es wurde aber darauf geschaut, dass in
 │ √  quotes.cy.ts                             940ms        3        3        -        -        - │
 └────────────────────────────────────────────────────────────────────────────────────────────────┘
   √  All specs passed!                        00:07       19       19        -        -        -
+```
+
+### Server
+```
+PASS  test/articles.test.js
+PASS  test/auth.test.js
+PASS  test/modules.test.js
+PASS  test/comment.test.js
+PASS  test/quotes.test.js
+PASS  test/rate.test.js
+                                                                                                                      
+Test Suites: 6 passed, 6 total                                                                                        
+Tests:       18 passed, 18 total
+Snapshots:   0 total
+Time:        4.363 s, estimated 5 s
+Ran all test suites.
 ```
