@@ -15,6 +15,11 @@ declare module 'express-session' {
     }
 }
 
+// shutdown from docker
+process.once("SIGTERM", () => {
+    process.exit(0);
+});
+
 export const app = express();
 
 await mongoose.connect(global.__MONGO_URI__ || process.env.MONGO, { dbName: process.env.DB_NAME });

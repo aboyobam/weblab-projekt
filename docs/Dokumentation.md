@@ -113,7 +113,10 @@ Es wurde kein SSR umgesetzt, obwohl dies nachträglich vermutlich sinnvoll wäre
 ### Testing
 Da der Client an sich keine wirkliche Logik beinhaltet, sondern nur die JSON Daten von der API visuell darstellt, wurde für den Client keine Unit-Tests erstellt. Dafür wurde jede Seite mit ausführlichen End-to-End Tests getestet.
 
-Auf dem Server wurden alle wichtigen Endpunkte mit unit Tests getestet. Integrationstest wurden manuell gemacht, da die Zeit nicht reichte, um diese zu automatisieren. 
+Auf dem Server wurden alle Endpunkte mit unit Tests (supertest) getestet. Integrationstest wurden manuell gemacht, da die Zeit nicht reichte, um diese zu automatisieren.
+
+### Registration
+Beim registrieren wird zwar eine Email-Adresse verlangt, jedoch wird diese nicht benutzt und es werden keine Emails versendet. Der Benutzername muss einmalig sein.
 
 ## Qualitätsanforderungen
 ### Error Handling
